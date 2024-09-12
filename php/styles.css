@@ -1,0 +1,12 @@
+table {
+
+    height: auto;
+}
+
+.addr {
+    width: 300px
+}
+
+.submit_button {
+    word-wrap: none;
+}
