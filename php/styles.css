@@ -10,3 +10,11 @@ table {
 .submit_button {
     word-wrap: none;
 }
+
+thead {
+    background-color:rgb(178, 208, 234);
+}
+
+.order-headers th {
+    width: 150px;
+}

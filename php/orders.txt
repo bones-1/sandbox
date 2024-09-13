@@ -3,3 +3,5 @@
 15:44, 10th September 2024	1 tires 	2oil	3 spark plugs	$145.2	Property Lane
 16:11, 10th September 2024	1 tires 	2 oil	3 spark plugs	$145.2	Property Lane
 16:24, 10th September 2024	4 tires 	4 oil	4 spark plugs	$501.6	Property Lane
+19:36, 12th September 2024	3 tires 	9 oil	7 spark plugs	$459.8	12 Party Ave
+01:24, 13th September 2024	5 tires 	3 oil	2 spark plugs	$591.8	18 Bonday St.
