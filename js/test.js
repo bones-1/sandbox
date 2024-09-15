@@ -428,22 +428,65 @@ usersById = {
 }
 */
 
-let range = {
-  from: 1,
-  to: 5,
+// let range = {
+//   from: 1,
+//   to: 5,
 
-  [Symbol.iterator]: function () {
-    return {
-      current: this.from,
-      last: this.to,
+//   [Symbol.iterator]: function () {
+//     return {
+//       current: this.from,
+//       last: this.to,
 
-      next() {
-        if (this.current <= this.last) {
-          return { done: false, value: this.current++ };
-        } else {
-          return { done: true };
-        }
-      },
-    };
-  },
-};
+//       next() {
+//         if (this.current <= this.last) {
+//           return { done: false, value: this.current++ };
+//         } else {
+//           return { done: true };
+//         }
+//       },
+//     };
+//   },
+// };
+
+// let recipeMap = new Map([
+//   ["cucumber", 500],
+//   ["tomatoes", 350],
+//   ["onion", 50],
+// ]);
+
+// let entries = Object.fromEntries(recipeMap)
+
+// function unique(arr) {
+//   return Array.from(new Set(arr));
+// }
+
+// let values = ["Hare", "Krishna", "Hare", "Krishna",
+//   "Krishna", "Krishna", "Hare", "Hare", ":-O"
+// ];
+
+// alert( unique(values) ); // Hare, Krishna, :-O
+
+// let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+// alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
+
+// function aclean(arr){
+//   let collection = new Map();
+//   let sorted;
+
+//   arr.forEach((word) => {
+//     sorted = word.toLowerCase().split('').sort().join('');
+//     collection.set(sorted, word);
+//   });
+
+//   return Array.from(collection.values());
+// }
+
+// let map = new Map();
+
+// map.set("name", "John");
+
+// let keys = Array.from(map.keys());
+
+// // Error: keys.push is not a function
+// keys.push(1, "more")

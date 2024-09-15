@@ -1,0 +1,12 @@
+label {
+    font-weight: bold;
+}
+
+#name, #email {
+    width: 270px;
+}
+
+#feedback {
+    width: 370px;
+    height: 150px;
+}

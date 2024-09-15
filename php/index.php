@@ -43,8 +43,10 @@ $documentTitle = "Order Form"
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="text-align: center;"><input
-                        type="submit" value="Submit Order" class="submit_button" /></td>
+                <td colspan="2" style="text-align: center;">
+                    <input
+                        type="submit" value="Submit Order" class="submit_button" />
+                </td>
             </tr>
         </table>
     </form>
