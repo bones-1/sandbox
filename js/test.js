@@ -490,3 +490,64 @@ usersById = {
 
 // // Error: keys.push is not a function
 // keys.push(1, "more")
+
+// let salaries = {
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+// };
+
+// alert( sumSalaries(salaries) ); // 650
+
+// function sumSalaries (obj) {
+//   let sum = 0;
+
+//   for (let salary of Object.values(obj)) {
+//     sum += salary;
+//   }
+
+//   return sum;
+// }
+
+// let user = {
+//   name: "John",
+//   age: 30,
+// };
+
+// alert(count(user));
+
+// function count(obj){
+//   return Object.keys(obj).length;
+// }
+// let options = {
+//   title: "Menu",
+// };
+
+// let { width: w = 100, height: h = 200, title: t } = options;
+
+// alert(t); // Menu
+// alert(w); // 100
+// alert(h);
+// let options = {
+//   size: {
+//     width: 100,
+//     height: 200
+//   },
+//   items: ["Cake", "Donut"],
+//   extra: true
+// };
+
+// // destructuring assignment split in multiple lines for clarity
+// let {
+//   size: {
+//     width,
+//     height,
+//   },
+//   items: [item1, item2], // assign items here
+//   title = "Menu" // not present in the object (default value is used)
+// } = options;
+
+// alert(title);  // Menu
+// console.log(size);
+// alert(item1);  // Cake
+// alert(item2);  // Donut
