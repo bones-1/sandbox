@@ -5,3 +5,8 @@
 16:24, 10th September 2024	4 tires 	4 oil	4 spark plugs	$501.6	Property Lane
 19:36, 12th September 2024	3 tires 	9 oil	7 spark plugs	$459.8	12 Party Ave
 01:24, 13th September 2024	5 tires 	3 oil	2 spark plugs	$591.8	18 Bonday St.
+14:59, 16th September 2024	0 tires 	0 oil	0 spark plugs	$0	
+15:00, 16th September 2024	0 tires 	0 oil	0 spark plugs	$0	
+15:01, 16th September 2024	0 tires 	0 oil	0 spark plugs	$0	
+15:01, 16th September 2024	0 tires 	0 oil	0 spark plugs	$0	
+15:01, 16th September 2024	0 tires 	0 oil	0 spark plugs	$0	

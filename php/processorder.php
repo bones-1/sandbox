@@ -1,9 +1,9 @@
 <?php
 // create short variable names
-$tireqty = (int) $_POST['tireqty'];
-$oilqty = (int) $_POST['oilqty'];
-$sparkqty = (int) $_POST['sparkqty'];
-$address = preg_replace('/\t|\R/', ' ', $_POST['address']);
+@$tireqty = (int) $_POST['tireqty'];
+@$oilqty = (int) $_POST['oilqty'];
+@$sparkqty = (int) $_POST['sparkqty'];
+@$address = preg_replace('/\t|\R/', ' ', $_POST['address']);
 $document_root = $_SERVER['DOCUMENT_ROOT'];
 $date = date('H:i, jS F Y');
 ?>
@@ -68,6 +68,7 @@ $date = date('H:i, jS F Y');
     fclose($fp);
     echo "<p>Order written.</p>";
     ?>
+
 </body>
 
 </html>
