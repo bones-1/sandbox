@@ -1,6 +1,6 @@
 "use strict";
 
-window.alert = console.log;
+let alert = console.log;
 
 // let schedule = {};
 
@@ -551,3 +551,61 @@ usersById = {
 // console.log(size);
 // alert(item1);  // Cake
 // alert(item2);  // Donut
+
+// let user = { name: "John", years: 30 };
+
+// let {name, years: age, isAdmin = false} = user;
+
+// alert( name ); // John
+// alert( age ); // 30
+// alert( isAdmin ); // false
+
+// function topSalary(salaries = {}) {
+//   let employees = Object.entries(salaries);
+//   let result;
+
+//   if (employees.length == 0) return null;
+
+
+//   result =  employees.reduce((topEmployee, employee) =>
+//     topEmployee[1] > employee[1] ? topEmployee : employee
+//   );
+
+//   return result[0];
+  // let topEmployee = employees.pop();
+
+  // for (let [employee, salary] of employees){
+  //   topEmployee = salary > topEmployee[1] ? [employee, salary] : topEmployee;
+  // }
+
+  // return topEmployee[0];
+// }
+
+// let salaries = {
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
+// };
+
+// console.log(topSalary(salaries));
+
+// 0 means 01.01.1970 UTC+0
+// let Jan01_1970 = new Date();
+// alert( Jan01_1970 );
+
+// // now add 24 hours, get 02.01.1970 UTC+0
+// let Jan02_1970 = new Date (24 * 3600 * 1000);
+// alert( Jan02_1970 );
+
+let start = Date.now(); // milliseconds count from 1 Jan 1970
+
+// do the job
+for (let i = 0; i < 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = Date.now(); // done
+
+alert(`The loop took ${end - start} ms`);
+
+
