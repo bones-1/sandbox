@@ -1,15 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestPad</title>
+    <style>
+        body {
+            background-color: rgb(55, 55, 55);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
 <?php
-$string = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil incidunt quod itaque nostrum voluptatibus sunt quasi esse, harum, corrupti ipsa maiores excepturi recusandae perferendis blanditiis asperiores saepe dignissimos odit ut?";
+include './__custom_php/files.php';
 
-$token = strtok($string, ' ');
-$from = ['a', 'e', 'i', 'o', 'u'];
-$to = "\u{1F60E}";
-while ($token !== false) {
-    // foreach ($replace as $vowel) {
-    //     $token = strtr($token, $vowel, ":");
-    // }
+safe_readfile("orders.txt", "r", 1000)
+?>
 
-    $token = str_replace($from, $to, $token);
-    printf("%s<br>", $token);
-    $token = strtok(' ');
-}
