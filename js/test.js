@@ -566,19 +566,18 @@ usersById = {
 
 //   if (employees.length == 0) return null;
 
-
 //   result =  employees.reduce((topEmployee, employee) =>
 //     topEmployee[1] > employee[1] ? topEmployee : employee
 //   );
 
 //   return result[0];
-  // let topEmployee = employees.pop();
+// let topEmployee = employees.pop();
 
-  // for (let [employee, salary] of employees){
-  //   topEmployee = salary > topEmployee[1] ? [employee, salary] : topEmployee;
-  // }
+// for (let [employee, salary] of employees){
+//   topEmployee = salary > topEmployee[1] ? [employee, salary] : topEmployee;
+// }
 
-  // return topEmployee[0];
+// return topEmployee[0];
 // }
 
 // let salaries = {
@@ -597,15 +596,96 @@ usersById = {
 // let Jan02_1970 = new Date (24 * 3600 * 1000);
 // alert( Jan02_1970 );
 
-let start = Date.now(); // milliseconds count from 1 Jan 1970
+// let start = Date.now(); // milliseconds count from 1 Jan 1970
 
-// do the job
-for (let i = 0; i < 100000; i++) {
-  let doSomething = i * i * i;
+// // do the job
+// for (let i = 0; i < 100000; i++) {
+//   let doSomething = i * i * i;
+// }
+
+// let end = Date.now(); // done
+
+// alert(`The loop took ${end - start} ms`);
+
+// let date = new Date(2012,1,20,3,12);
+// console.log(date);
+
+// function getWeekDay(date) {
+//   let day = date.getDay();
+//   let weekdays = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+
+//   return weekdays[day];
+// }
+
+// let date = new Date(2012, 0, 3); // 3 Jan 2012
+// alert(getWeekDay(date));
+
+// function getDateAgo(date, days){
+//   let copyDate = new Date(date.getTime());
+//   copyDate.setDate(copyDate.getDate() - days);
+//   return copyDate.getDate();
+// }
+
+// let date = new Date(2015, 0, 2);
+
+// alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+// alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+// alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+
+// function getLastDayOfMonth(year, month){
+//   return new Date(year, month + 1, 0).getDate();
+// }
+// getLastDayOfMonth(2012, 1);
+
+// function getSecondsToday(){
+//   let diff = Date.now() - new Date().setHours(0,0,0,0);
+//   return Math.floor(diff/1000);
+// }
+
+// console.log(getSecondsToday());
+
+// function getSecondsToTomorrow() {
+//   let now = new Date();
+//   let [tomorrowYear, tomorrowMonth, tomorrowDate] = [
+//     now.getFullYear(),
+//     now.getMonth(),
+//     now.getDate() + 1,
+//   ];
+
+//   let tomorrow = new Date(tomorrowYear, tomorrowMonth, tomorrowDate);
+
+//   return Math.floor((tomorrow - now) / 1000);
+// }
+
+// console.log(getSecondsToTomorrow());
+
+function formatDate(date) {
+  let timeDifference = Math.floor((Date.now() - date) / 1000);
+
+  if (timeDifference < 1) {
+    return "right now";
+  } else if (timeDifference < 60) {
+    return `${timeDifference} sec. ago`;
+  } else if (timeDifference < 60 * 60) {
+    return `${timeDifference / 60} min. ago`;
+  }
+
+  date = [
+    "0" + date.getDate(),
+    "0" + (date.getMonth() + 1),
+    "0" + date.getYear(),
+    "0" + date.getHours(),
+    "0" + date.getMinutes(),
+  ].map((element) => element.slice(-2));
+
+  return date.slice(0, 3).join(".") + " " + date.slice(3).join(":");
 }
 
-let end = Date.now(); // done
+alert(formatDate(new Date(new Date() - 1))); // "right now"
 
-alert(`The loop took ${end - start} ms`);
+alert(formatDate(new Date(new Date() - 30 * 1000))); // "30 sec. ago"
 
+alert(formatDate(new Date(new Date() - 5 * 60 * 1000))); // "5 min. ago"
 
+// yesterday's date like 31.12.2016 20:00
+alert(formatDate(new Date(new Date() - 86400 * 1000)));
