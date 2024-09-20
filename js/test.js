@@ -659,33 +659,97 @@ usersById = {
 
 // console.log(getSecondsToTomorrow());
 
-function formatDate(date) {
-  let timeDifference = Math.floor((Date.now() - date) / 1000);
+// function formatDate(date) {
+//   let timeDifference = Math.floor((Date.now() - date) / 1000);
 
-  if (timeDifference < 1) {
-    return "right now";
-  } else if (timeDifference < 60) {
-    return `${timeDifference} sec. ago`;
-  } else if (timeDifference < 60 * 60) {
-    return `${timeDifference / 60} min. ago`;
-  }
+//   if (timeDifference < 1) {
+//     return "right now";
+//   } else if (timeDifference < 60) {
+//     return `${timeDifference} sec. ago`;
+//   } else if (timeDifference < 60 * 60) {
+//     return `${timeDifference / 60} min. ago`;
+//   }
 
-  date = [
-    "0" + date.getDate(),
-    "0" + (date.getMonth() + 1),
-    "0" + date.getYear(),
-    "0" + date.getHours(),
-    "0" + date.getMinutes(),
-  ].map((element) => element.slice(-2));
+//   date = [
+//     "0" + date.getDate(),
+//     "0" + (date.getMonth() + 1),
+//     "0" + date.getYear(),
+//     "0" + date.getHours(),
+//     "0" + date.getMinutes(),
+//   ].map((element) => element.slice(-2));
 
-  return date.slice(0, 3).join(".") + " " + date.slice(3).join(":");
-}
+//   return date.slice(0, 3).join(".") + " " + date.slice(3).join(":");
+// }
 
-alert(formatDate(new Date(new Date() - 1))); // "right now"
+// alert(formatDate(new Date(new Date() - 1))); // "right now"
 
-alert(formatDate(new Date(new Date() - 30 * 1000))); // "30 sec. ago"
+// alert(formatDate(new Date(new Date() - 30 * 1000))); // "30 sec. ago"
 
-alert(formatDate(new Date(new Date() - 5 * 60 * 1000))); // "5 min. ago"
+// alert(formatDate(new Date(new Date() - 5 * 60 * 1000))); // "5 min. ago"
 
-// yesterday's date like 31.12.2016 20:00
-alert(formatDate(new Date(new Date() - 86400 * 1000)));
+// // yesterday's date like 31.12.2016 20:00
+// alert(formatDate(new Date(new Date() - 86400 * 1000)));
+
+// let user = {
+//   name: "John",
+//   age: 25,
+//   roles: {
+//     isAdmin: false,
+//     isEditor: true,
+//   },
+// };
+
+// alert(
+//   JSON.stringify(user, (key, value) =>
+//     value === true ? 1 : value === false ? 0 : value
+//   )
+// );
+
+// let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+// let meetup = JSON.parse(str,(key, value) => (key ==='date') ? new Date(value) : value);
+
+// alert( meetup.date.getDate() ); // now works!
+
+// let user = {
+//   name: "John Smith",
+//   age: 35,
+// };
+
+// console.log (JSON.parse(JSON.stringify(user)));
+
+// let room = {
+//   number: 23
+// };
+
+// let meetup = {
+//   title: "Conference",
+//   occupiedBy: [{name: "John"}, {name: "Alice"}],
+//   place: room
+// };
+
+// // circular references
+// room.occupiedBy = meetup;
+// meetup.self = meetup;
+
+// console.log( JSON.stringify(meetup,  (key, value) => {
+//   return (value === meetup && key !== '') ? undefined : value
+// }, 2));
+
+// /* result should be:
+// {
+//   "title":"Conference",
+//   "occupiedBy":[{"name":"John"},{"name":"Alice"}],
+//   "place":{"number":23}
+// }
+// */
+
+// function sumTo(num){
+//   if (num == 1){
+//     return 1;
+//   }
+
+//   return sumTo(num - 1) + num;
+// }
+
+// alert( sumTo(100) ); // 5050
