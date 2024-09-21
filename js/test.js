@@ -753,3 +753,95 @@ usersById = {
 // }
 
 // alert( sumTo(100) ); // 5050
+
+// function makeCounter(){
+//   let count = 0;
+
+//   return function(){
+//     return count++;
+//   }
+// }
+
+// let counter = makeCounter();
+// let counter2 = makeCounter();
+
+// console.log(counter());
+// console.log(counter());
+// console.log(counter2());
+
+// let value = "Surprise!";
+
+// function f() {
+//   let value = "the closest value";
+
+//   function g() {
+//     debugger; // in console: type alert(value); Surprise!
+//   }
+
+//   return g;
+// }
+
+// let g = f();
+// g();
+
+// function sum(num1){
+//   return function(num2){
+//     return num1 + num2;
+//   }
+// }
+
+// function inBetween(a, b){
+//   return function (value){
+// return value >= a && value <= b;
+//   }
+// }
+
+// function inArray(arr){
+//   return function(value){
+//     return arr.includes(value)
+//   }
+// }
+
+// let arr = [1, 2, 3, 4, 5, 6, 7];
+
+// alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+// function byField(property){
+//   return function(x, y){
+//     return (x[property] > y[property]) ? 1 : -1;
+//   }
+// }
+
+// let users = [
+//   { name: "John", age: 20, surname: "Johnson" },
+//   { name: "Pete", age: 18, surname: "Peterson" },
+//   { name: "Ann", age: 19, surname: "Hathaway" },
+// ];
+
+// users.sort(byField("name"));
+// users.sort(byField("age"));
+
+// function makeArmy() {
+//   let shooters = [];
+
+//   let i = 0;
+//   while (i < 10) {
+//    let shooterID = i;
+//     let shooter = function() { // create a shooter function,
+       
+//       alert( shooterID ); // that should show its number
+//     };
+//     shooters.push(shooter); // and add it to the array
+//     i++;
+//   }
+
+//   // ...and return the array of shooters
+//   return shooters;
+// }
+
+let army = makeArmy();
+
+// all shooters show 10 instead of their numbers 0, 1, 2, 3...
+army[0](); // 10 from the shooter number 0
+army[1](); // 10 from the shooter number 1
+army[2](); // 10 ...and so on.
