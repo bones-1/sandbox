@@ -1,132 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require("./header2.php");
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta id="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestPad</title>
-    <style>
-        body {
-            background-color: rgb(55, 55, 55);
-            color: white;
-        }
-    </style>
-</head>
 
-<body>
-
-    <?php
-    class Classroom
+<?php
+class A
+{
+    private function operation1()
     {
-        protected $student_db = [];
-
-        function callback($ar_value, $b)
-        {
-            return ($ar_value['id'] == $b);
-            echo "callback called<br>";
-        }
-
-
-        public function add_student($arr)
-        {
-
-            if ($this->validate_student_array($arr)) {
-                if (count($this->student_db) == 0) {
-                    array_push($this->student_db, $arr);
-                } else if ($this->_arr_find($this->student_db, $arr['id'], function ($ar_value, $b) {
-                    return ($ar_value['id'] == $b);
-                    echo "callback called<br>";
-                }) > 0) {
-                    echo "Item added<br>";
-                }
-            }
-        }
-
-        // public function show_student($id)
-        // {
+        echo "operation1 called";
+    }
+    protected function operation2()
+    {
+        echo "operation2 called";
+    }
+    public function operation3()
+    {
+        echo "operation3 called";
+    }
+}
+final class B extends A
+{
+    function __construct()
+    {
+        // $this->operation1();
+        $this->operation2();
+        $this->operation3();
+    }
+}
 
 
-        //     if ($this->student_index($id)) {
-        //         echo "No such student.<br>";
-        //     } else {
-        //         echo "<em>Student Info</em><br>";
-        //     }
-        // }
 
-        protected function validate_student_array($arr)
-        {
-            if (!(is_array($arr) && isset($arr['id']) && isset($arr['name']))) {
-                return false;
-            }
+interface pupil
+{
+    public function get_student_name();
+    public function set_student_name($name);
+}
 
-            if (!(is_int($arr['id']) && is_string($arr['name']))) {
-                return false;
-            }
+interface mentor
+{
+    public function get_teacher_name();
+    public function set_teacher_name($name);
+}
 
-            return true;
-        }
+interface manager
+{
+    public function get_admin_name();
+    public function set_admin_name($name);
+}
 
+class School implements pupil, mentor, manager
+{
+    protected $s_name = 'student';
 
-        // Traverses an array with callback function until it finds value and then returns the shallow index of that value. The callback function compares the two values returns true if they match and false if they do not
-        protected function _arr_find($arr, $value, $callback)
-        {
-            foreach ($arr as $index => $arr_item) {
-
-                if ($callback($arr_item, $value) === true) {
-                    return $index;
-                    echo "Item found<br>";
-                };
-            }
-            echo "Item not found<br>";
-
-            return -1;
-        }
-
-
-        // Handle getting atributes tht do not exist;
-        # Returns nothing;
-        function __get($name)
-        {
-            if ($name !== 'total') {
-                print "No such property!";
-                return;
-            }
-
-            if (count($this->student_db) == 0) {
-                print "The classroom is empty.<br>";
-                return;
-            }
-
-            print "There is " . count($this->student_db) . ' students in this classroom.<br>';
-        }
-
-        # Returns bool: true on success, bool: false on failure;
-        function __set($name, $value)
-        {
-            // if (!isset($this->$id)) {
-            //     print "The atribute \"$id\" does not exist!<br>";
-            // } else if ($value < 0 || $value > 100) {
-            //     print "The value is out of range!<br>";
-            // } else {
-            //     $this->$id = $value;
-            //     return true;
-            // }
-            print "Operation not permitted!<br>";
-
-            return false;
-        }
+    public function get_student_name()
+    {
+        echo "Student name: ". $this -> s_name."</br>";
     }
 
-    $room1 = new Classroom();
-    $room1->add_student(['id' => 132, 'name' => 'Sam']);
-    $room1->add_student(['id' => 3333, 'name' => 'Sam']);
-    $room1->add_student(['id' => 132, 'name' => 'Sam']);
+    public function set_student_name($name)
+    {
+        $this->s_name = $name;
+    }
 
-    $room1->total;
-    // $room1->show_student(132);
+    protected $t_name = 'teacher';
+
+    public function get_teacher_name()
+    {
+        echo "Teacher name: " . $this->s_name . "</br>";
+    }
+
+    public function set_teacher_name($name)
+    {
+        $this->t_name = $name;
+    }
+
+    protected $a_name = 'admin';
+
+    public function get_admin_name()
+    {
+        echo "Admin name: " . $this->s_name . "</br>";
+    }
+
+    public function set_admin_name($name)
+    {
+        $this->a_name = $name;
+    }
+}
+
+$uwi = new School();
+$uwi ->set_student_name ("james");
+$uwi->get_admin_name();
 
 
-    ?>
-</body>
 
-</html>
+?>
+
+
+
+<?php
+require("./footer2.php");
+?>
