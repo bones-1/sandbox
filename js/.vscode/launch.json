@@ -5,6 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach2",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "type": "firefox",
+      "request": "attach",
+      "name": "Attach"  
+    },
+
+    {
       "type": "firefox",
       "request": "launch",
       "reAttach": true,

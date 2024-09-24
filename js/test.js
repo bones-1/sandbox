@@ -828,7 +828,7 @@ usersById = {
 //   while (i < 10) {
 //    let shooterID = i;
 //     let shooter = function() { // create a shooter function,
-       
+
 //       alert( shooterID ); // that should show its number
 //     };
 //     shooters.push(shooter); // and add it to the array
@@ -857,7 +857,6 @@ usersById = {
 //   counter.set = value => count = value;
 //   counter.decrease = () => count--;
 
-
 //   return counter;
 // }
 
@@ -866,3 +865,84 @@ usersById = {
 // counter.count = 10;
 // alert( counter() ); // 10
 
+// let callback = function () {
+//   let count = 0;
+//   return (message) =>
+//   console.log((count+=1) + message)
+//   };
+
+// let timerID = setInterval(callback(), 60000, " minute(s) have passed.");
+
+// setTimeout(() => clearInterval(timerID),5 * 60002)
+
+// let start = Date.now();
+// let times = [];
+
+// setTimeout(function run() {
+//   times.push(Date.now() - start); // remember delay from the previous call
+
+//   if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
+//   else setTimeout(run); // else re-schedule
+// });
+
+// function count(multiplier) {
+//   let total = multiplier;
+//   for (let i = 0; i < total; i++) {
+//     console.log(Math.floor(Math.random()*1000));
+//   }
+//   return "Processing done.";
+// }
+
+// function countDecorator(func) {
+//   let cache = new Map();
+
+//   return function (multiplier) {
+//     if (cache.has(multiplier)) {
+//       return cache.get(multiplier);
+//     }
+
+//     let result = func(multiplier);
+
+//     cache.set(multiplier, result);
+//     return result;
+//   };
+// }
+
+// count = countDecorator(count);
+
+// console.log(count(5));
+// console.log(count(6));
+// console.log(count(5));
+// console.log(count(9));
+
+// we'll make worker.slow caching
+let worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    // scary CPU-heavy task here
+    alert("Called with " + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+// same code as before
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function(...args) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func.call(this, ...args); // (**)
+    cache.set(x, result);
+    return result;
+  };
+}
+
+alert( worker.slow(1) ); // the original method works
+
+worker.slow = cachingDecorator(worker.slow); // now make it caching
+
+alert( worker.slow(2) );
