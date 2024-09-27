@@ -3,12 +3,12 @@
     interface validate_person_interface
     {
         # manipulate permitted_atributes array for selected class 
-        public function add_attribute(
+        static function add_attribute(
             string $name,
             string $type,
             array $properties
         );
-        public function remove_attribute(string $name);
+        static function remove_attribute(string $name);
         static function validate_data(array $data_array);
     }
 
@@ -16,16 +16,16 @@
     // Creates objects that accepts self data array and validates it, returning try or false. can also add additional attributes for the data to be validated against
     class Person implements validate_person_interface
     {
-        private const DATA_TYPES = ['boolean', 'integer', 'double',  'string', 'array'];
+        private  const DATA_TYPES = ['boolean', 'integer', 'double',  'string', 'array'];
 
-        private const ALLOWED_PROPERTIES = [
+        private  const ALLOWED_PROPERTIES = [
             'value',
             'max',
             'min',
             'length',
         ];
 
-        private const MAX_NAME_LEN = 20;
+        private  const MAX_NAME_LEN = 20;
 
         private const DEFAULT_RULES = [
             'name' => [
@@ -60,9 +60,9 @@
             ],
         ];
 
-        protected $custom_rules;
+        private static $custom_rules;
 
-        public function add_attribute(string $name, string $type, array $properties = [])
+        static function add_attribute(string $name, string $type, array $properties = [])
         {
             $name = trim(strtolower($name));
             $type = trim(strtolower($type));
@@ -86,15 +86,15 @@
             }
 
             $temp['type'] = $type;
-            $this->custom_rules[$name] = $temp;
+            self::$custom_rules[$name] = $temp;
 
-            echo var_dump($this->custom_rules);
+            echo var_dump(self::$custom_rules);
             return true;
         }
 
-        public function remove_attribute(string $name)
+        static function remove_attribute(string $name)
         {
-            unset($this->custom_rules[$name]);
+            unset(self::$custom_rules[$name]);
         }
 
         static function validate_data(array $data_array)
@@ -107,10 +107,9 @@
         }
     }
 
-    $student = new Person;
 
-    echo  $student->add_attribute('country', 'string', ['max' => 3]);
-    $student->remove_attribute('country');
+    echo  Person::add_attribute('country', 'string', ['max' => 3]);
+    Person::remove_attribute('country');
 
     echo 'done';
     // interface student

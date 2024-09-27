@@ -916,33 +916,71 @@ usersById = {
 // console.log(count(9));
 
 // we'll make worker.slow caching
-let worker = {
-  someMethod() {
-    return 1;
-  },
+// let worker = {
+//   someMethod() {
+//     return 1;
+//   },
 
-  slow(x) {
-    // scary CPU-heavy task here
-    alert("Called with " + x);
-    return x * this.someMethod(); // (*)
-  }
-};
+//   slow(x) {
+//     // scary CPU-heavy task here
+//     alert("Called with " + x);
+//     return x * this.someMethod(); // (*)
+//   }
+// };
 
-// same code as before
-function cachingDecorator(func) {
-  let cache = new Map();
-  return function(...args) {
-    if (cache.has(x)) {
-      return cache.get(x);
-    }
-    let result = func.call(this, ...args); // (**)
-    cache.set(x, result);
-    return result;
+// // same code as before
+// function cachingDecorator(func) {
+//   let cache = new Map();
+//   return function(...args) {
+//     if (cache.has(x)) {
+//       return cache.get(x);
+//     }
+//     let result = func.call(this, ...args); // (**)
+//     cache.set(x, result);
+//     return result;
+//   };
+// }
+
+// alert( worker.slow(1) ); // the original method works
+
+// worker.slow = cachingDecorator(worker.slow); // now make it caching
+
+// alert( worker.slow(2) );
+
+// function work(a, b) {
+//   alert(a + b); // work is an arbitrary function or method
+// }
+
+// function spy(func){
+
+// let wrapper = function this_func (...args) {
+//     this_func.calls.push(args);
+
+//     return func.apply(this, args);
+//   }
+//   wrapper.calls = [];
+
+//   return wrapper;
+// }
+
+// work = spy(work);
+
+// work(1, 2); // 3
+// work(4, 5); // 9
+
+// for (let args of work.calls) {
+//   alert("call:" + args.join()); // "call:1,2", "call:4,5"
+// }
+
+function delay(f, ms) {
+
+  return function() {
+    setTimeout(() => f.apply(this, arguments), ms);
+    console.log(this)
   };
+
 }
 
-alert( worker.slow(1) ); // the original method works
+let f1000 = delay(alert, 1000);
 
-worker.slow = cachingDecorator(worker.slow); // now make it caching
-
-alert( worker.slow(2) );
+f1000("test"); // shows "test" after 1000ms
