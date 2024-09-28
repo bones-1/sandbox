@@ -972,15 +972,36 @@ usersById = {
 //   alert("call:" + args.join()); // "call:1,2", "call:4,5"
 // }
 
-function delay(f, ms) {
+// function delay(f, ms) {
 
-  return function() {
-    setTimeout(() => f.apply(this, arguments), ms);
-    console.log(this)
-  };
+//   return function() {
+//     setTimeout(() => f.apply(this, arguments), ms);
+//     console.log(this)
+//   };
 
-}
+// }
 
-let f1000 = delay(alert, 1000);
+// let f1000 = delay(alert, 1000);
 
-f1000("test"); // shows "test" after 1000ms
+// f1000("test"); // shows "test" after 1000ms
+
+
+// function askPassword(ok, fail) {
+//   let password = prompt("Password?", "");
+//   if (password == "rockstar") ok();
+//   else fail();
+// }
+
+// let user = {
+//   name: "John",
+
+//   loginOk() {
+//     alert(`${this.name} logged in`);
+//   },
+
+//   loginFail() {
+//     alert(`${this.name} failed to log in`);
+//   },
+// };
+
+// askPassword(user.loginOk.bind(this), user.loginFail.bind(this));
