@@ -985,7 +985,6 @@ usersById = {
 
 // f1000("test"); // shows "test" after 1000ms
 
-
 // function askPassword(ok, fail) {
 //   let password = prompt("Password?", "");
 //   if (password == "rockstar") ok();
@@ -1005,3 +1004,260 @@ usersById = {
 // };
 
 // askPassword(user.loginOk.bind(this), user.loginFail.bind(this));
+
+// let user = {
+//   name: "John",
+//   surname: "Smith",
+//   set fullName (value){
+//     [this.name, this.surname] = value.split(' ');
+//   },
+//   get fullName (){
+//     return this.name + ' ' + this.surname;
+//   },
+// };
+
+// console.log(user.fullName);
+// user.fullName = 'Douglas Campbell';
+// console.log(user.fullName);
+
+// let man ={
+//   'walk': true,
+// }
+
+// let man2 = {
+//   'walk': false,
+// };
+
+// man2.__proto__ = man;
+
+// console.log(man2);
+// delete man2.walk;
+// console.log(man2);
+
+// let hamster = {
+
+//   eat(food) {
+//     this.stomach.push(food);
+//   }
+// };
+
+// let speedy = {
+//   stomach: [],
+//   __proto__: hamster,
+// };
+
+// let lazy = {
+//   stomach: [],
+//   __proto__: hamster,
+// };
+
+// // This one found the food
+// speedy.eat("apple");
+// alert( speedy.stomach ); // apple
+
+// // This one also has it, why? fix please.
+// alert( lazy.stomach ); // apple
+
+// function Rabbit (){}
+// Rabbit.prototype = {
+//   'eats': true,
+// }
+
+// let rabbit = new Rabbit();
+
+// Rabbit.prototype = {};
+
+// console.log(rabbit.eats);\
+
+// Function.prototype.defer = function(delay){
+//   setTimeout(this, delay);
+// }
+
+// function f() {
+//   alert("Hello!");
+// }
+
+// f.defer(3000);
+
+// Function.prototype.defer = function (delay){
+//   let thisArg = this;
+//   return function func (...args){
+//     console.log(func.__proto__ == Function.__proto__)
+//     setTimeout(f.apply(thisArg, args), delay)
+//   }
+// }
+
+// function f(a, b) {
+//   alert(a + b);
+// }
+
+// f.defer(1000)(1, 2);
+
+// let dictionary = Object.create(null);
+// // add some data
+// dictionary.apple = "Apple";
+// dictionary.__proto__ = "test";
+// dictionary.pear = "pear";
+
+// // only apple and __proto__ are in the loop
+
+// Object.defineProperty(dictionary,'toString', {
+//   value() {return Object.keys(this).join()},
+//   enumerable: false,
+// })
+// // your toString in action
+// console.log(dictionary + '')
+
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+
+//   sayHi() {
+//     alert(this.name);
+//   }
+// }
+
+// let a = new User('Jane');
+
+// class Clock {
+//   constructor({ template }) {
+//     this.template = template;
+//   }
+
+//   render () {
+//     let date = new Date();
+
+//     let hours = date.getHours();
+//     if (hours < 10) hours = "0" + hours;
+
+//     let mins = date.getMinutes();
+//     if (mins < 10) mins = "0" + mins;
+
+//     let secs = date.getSeconds();
+//     if (secs < 10) secs = "0" + secs;
+
+//     let output = this.template
+//       .replace("h", hours)
+//       .replace("m", mins)
+//       .replace("s", secs);
+
+//     console.log(output);
+//   };
+
+//   stop () {
+//     clearInterval(this.timer);
+//   };
+
+//   start () {
+//     this.render();
+//     this.timer = setInterval(() => this.render(), 60000);
+//   };
+// }
+
+// let clock = new Clock({ template: "h:m:s" });
+// clock.start();
+
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+
+//   speed = 0;
+
+//   run(speed) {
+//     this.speed = speed;
+//     alert(`${this.name} runs with speed ${this.speed}.`);
+//   }
+//   stop() {
+//     this.speed = 0;
+//     alert(`${this.name} stands still.`);
+//   }
+// }
+
+// class Rabbit extends Animal {
+//   hide(){
+//     alert(`${this.name} hides.`);
+//   }
+
+//   stop(){
+//     super.stop();
+//     this.hide();
+//   }
+// }
+
+// let rabbit = new Rabbit();
+
+// let animal = {
+//   name: "Animal",
+//   eat() {
+//     // animal.eat.[[HomeObject]] == animal
+//     alert(`${this.name} eats.`);
+//   },
+// };
+
+
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// class Rabbit extends Animal {
+//   constructor(name) {
+//     super(name);
+//     this.created = Date.now();
+//   }
+// }
+
+// let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
+// alert(rabbit.name);
+
+class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = "0" + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = "0" + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = "0" + secs;
+
+    let output = this.template
+      .replace("h", hours)
+      .replace("m", mins)
+      .replace("s", secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+}
+
+class ExtendedCLock extends Clock {
+  constructor(template, precision) {
+    super(template);
+    this.precision = precision;
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), this.precision);
+  }
+}
+
+let clock = new ExtendedCLock({ template: "h:m:s" }, 5);

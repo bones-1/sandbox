@@ -32,6 +32,7 @@
         // Creates objects that accepts self data array and validates it, returning try or false. can also add additional attributes for the data to be validated against
         class Person implements validate_person_interface
         {
+
             private  const DATA_TYPES = ['boolean', 'integer', 'double',  'string', 'array'];
 
             private  const ALLOWED_PROPERTIES = [
@@ -127,6 +128,7 @@
         $test = new Person;
 
         try {
+
             echo  $test->add_attribute('country', 'string', ['max' => 3]);
             $test->remove_attribute('country');
 
