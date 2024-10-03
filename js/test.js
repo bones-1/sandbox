@@ -1196,7 +1196,6 @@ usersById = {
 //   },
 // };
 
-
 // class Animal {
 //   constructor(name) {
 //     this.name = name;
@@ -1213,51 +1212,136 @@ usersById = {
 // let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
 // alert(rabbit.name);
 
-class Clock {
-  constructor({ template }) {
-    this.template = template;
-  }
+// class Clock {
+//   constructor({ template }) {
+//     this.template = template;
+//   }
 
-  render() {
-    let date = new Date();
+//   render() {
+//     let date = new Date();
 
-    let hours = date.getHours();
-    if (hours < 10) hours = "0" + hours;
+//     let hours = date.getHours();
+//     if (hours < 10) hours = "0" + hours;
 
-    let mins = date.getMinutes();
-    if (mins < 10) mins = "0" + mins;
+//     let mins = date.getMinutes();
+//     if (mins < 10) mins = "0" + mins;
 
-    let secs = date.getSeconds();
-    if (secs < 10) secs = "0" + secs;
+//     let secs = date.getSeconds();
+//     if (secs < 10) secs = "0" + secs;
 
-    let output = this.template
-      .replace("h", hours)
-      .replace("m", mins)
-      .replace("s", secs);
+//     let output = this.template
+//       .replace("h", hours)
+//       .replace("m", mins)
+//       .replace("s", secs);
 
-    console.log(output);
-  }
+//     console.log(output);
+//   }
 
-  stop() {
-    clearInterval(this.timer);
-  }
+//   stop() {
+//     clearInterval(this.timer);
+//   }
 
-  start() {
-    this.render();
-    this.timer = setInterval(() => this.render(), 1000);
-  }
-}
+//   start() {
+//     this.render();
+//     this.timer = setInterval(() => this.render(), 1000);
+//   }
+// }
 
-class ExtendedCLock extends Clock {
-  constructor(template, precision) {
-    super(template);
-    this.precision = precision;
-  }
+// class ExtendedClock extends Clock {
+//   constructor(template, precision) {
+//     super(template);
+//     this.precision = precision;
+//   }
 
-  start() {
-    this.render();
-    this.timer = setInterval(() => this.render(), this.precision);
-  }
-}
+//    start() {
+//     this.render();
+//     this.timer = setInterval(() => this.render(), this.precision);
+//   }
+// }
 
-let clock = new ExtendedCLock({ template: "h:m:s" }, 5);
+// let clock = new ExtendedClock({ template: "h:m:s" }, 60000);
+
+// class Rabbit extends Object {
+//   constructor(name) {
+//     super();
+//     this.name = name;
+//   }
+// }
+
+// let rabbit = new Rabbit("Rab");
+
+// alert(rabbit.hasOwnProperty("name"));
+
+// class CoffeeMachine {
+//   constructor(power) {
+//     this._power = power;
+//   }
+
+//   get power (){
+//     return this._power;
+//   }
+
+//   #waterAMount = 0;
+//   #waterLimit = 200;
+
+//   #fixWaterLimit(value){
+//     if (value < 0 ) return 0;
+//     if (value > this.#waterLimit) return this.#waterLimit;
+//     return value;
+//   }
+
+//   setWaterAmount(value) {
+//     this.#waterAMount = this.#fixWaterLimit(value);
+//   }
+
+//   getWaterAmount() {
+//     return this.#waterAMount;
+//   }
+// }
+
+// let cup = new CoffeeMachine();
+// cup.setWaterAmount(800);
+// console.dir(cup);
+
+// let sayMixin = {
+//   say(phrase) {
+//     alert(
+//       phrase + ": I would say that this is a method of encapsulation, yes?"
+//     );
+//   },
+//   sayHi() {
+//     alert(`Hello ${this.name}`);
+//   },
+//   sayBye() {
+//     alert(`Bye ${this.name}`);
+//   },
+// };
+
+// let sayInterface = {
+//   __proto__: sayMixin,
+
+//   sayBye() {
+//     super.sayBye();
+//   },
+
+//   sayHi() {
+//     super.sayHi();
+//   },
+
+//   say(phrase) {
+//     super.say(phrase);
+//   },
+// };
+
+// // usage:
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// // copy the methods
+// Object.assign(User.prototype, sayInterface);
+
+// // now User can say hi
+// let user = new User("Dude"); // Hello Dude!
