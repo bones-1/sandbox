@@ -1345,3 +1345,192 @@ usersById = {
 
 // // now User can say hi
 // let user = new User("Dude"); // Hello Dude!
+
+// class customError extends Error {
+//   constructor(message) {
+//     super(message);
+//   }
+
+//   name = this.constructor.name;
+// }
+
+// function test() {
+//   try {
+//     throw new customError("This is a custom Error");
+//   }  finally {
+//   console.log("Finally runs.53");
+//   }
+// }
+
+// console.log(test());
+
+// function loadScript(src) {
+// creates a <script> tag and append it to the page
+// this causes the script with given src to start loading and run when complete
+//   let script = document.createElement("script");
+//   script.src = src;
+//   document.head.append(script);
+// }
+
+// loadScript('test2.js')
+
+// function loadScript(src, callbackFn){
+//   let scriptElementObject = document.createElement('script');
+//   scriptElementObject.src = src;
+//   scriptElementObject.onload = () => callbackFn(null, scriptElementObject);
+//   scriptElementObject.onerror = () => callbackFn(new Error(`Script load error for ${src}.`))
+//   document.head.append(scriptElementObject);
+// }
+
+// function loaded(error, ElememntObject){
+//   if (error){
+//     console.log(error.message);
+//   } else {
+//   console.log(`Finished loading ${ElememntObject.src}`);
+//   }
+// }
+
+// loadScript('test2u.js', loaded);
+// console.log('Called after loading');
+
+// let callback = (res, rej) =>
+//   setTimeout(() => rej(new SyntaxError("Failed")), 1000);
+
+// let promise = new Promise(callback);
+
+// promise
+//   .then(() => console.log("The operation was successful!"))
+//   .catch((err) => console.log("The operation failed with error: " + err.name));
+
+// function loadScript(src) {
+//   return new Promise(function (resolve, reject) {
+//     let script = document.createElement("script");
+//     script.src = src;
+
+//     script.onload = () => resolve(script);
+//     script.onerror = () => reject(new Error(`Failed to load script ${src}.`));
+
+//     document.head.append(script);
+//   });
+// }
+
+// let promise = loadScript(
+//   "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"
+// );
+
+// promise
+//   .then((script) => console.log(`${script.src} is loaded!`))
+//   .catch((error) =>
+//     console.log(`${error.name}: ${error.message}`)
+//   );
+
+// function delay (ms){
+//   return new Promise((resolve => setTimeout(resolve, ms)))
+// }
+
+// delay(3000).then(() => alert("runs after 3 seconds"));
+
+// fetch("https://api.github.com/users/bones-1")
+//   .then((response) => response.json())
+//   .then((user) => {
+//     let img = document.createElement("img");
+//     img.src = user.avatar_url;
+//     img.className = "profile-pic";
+//     img.alt = "bone's profile picture :D";
+
+//     document.body.append(img);
+
+//     setTimeout(() => img.remove(), 3000);
+//   })
+//   .catch(() => console.log("The user profile was not found."));
+
+// the execution: catch -> then
+// new Promise((resolve, reject) => {
+
+// bad_code;
+// }).then((result) => alert(`The promise result is ${result}.`));
+
+// function loadScript(src, callback) {
+//   let script = document.createElement("script");
+//   script.src = src;
+
+//   script.onload = () => callback(null, script);
+//   script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+//   document.head.append(script);
+// }
+
+// function wrapper(func) {
+//   return function (...args) {
+//     return new Promise((accept, reject) => {
+//       function callback(err, resolve) {
+//         if (err === null) accept(resolve);
+//         else reject(err);
+//       }
+
+//       args.push(callback);
+
+//       func.apply(this, args);
+//     });
+//   };
+// }
+
+// let loadScriptPromise = wrapper(loadScript);
+
+// loadScriptPromise("test2.js").catch(() =>
+//   console.info("The resource was not found!")
+// );
+
+// async function loadJson(url) {
+//   let response = await fetch(url);
+
+//   if (response.status == 200) {
+//    let json = await response.json();
+//    return json;
+//   } else {
+//     throw new Error(response.status);
+//   }
+// }
+
+// loadJson("https://javascript.info/no-such-user.json").catch(alert); // Error: 404
+
+// class HttpError extends Error {
+//   constructor(response) {
+//     super(`${response.status} for ${response.url}`);
+//     this.name = "HttpError";
+//     this.response = response;
+//   }
+// }
+
+// async function loadJson(url) {
+//   let response = await fetch(url);
+
+//   if (response.status == 200) {
+//     return response.json();
+//   } else {
+//     throw new HttpError(response);
+//   }
+// }
+
+// // Ask for a user name until github returns a valid user
+// async function demoGithubUser() {
+//   let name, response;
+//   do {
+//     name = prompt("Enter a name?", "iliakan");
+
+//     try {
+//       response = await loadJson(`https://api.github.com/users/${name}`);
+//       break;
+//     } catch (err) {
+//       if (err instanceof HttpError && err.response.status == 404) {
+//         alert("No such user, please reenter.");
+//       } else {
+//         throw err;
+//       }
+//     }
+//   } while (true);
+
+//   alert(`Full name: ${response.name}.`);
+// }
+
+// demoGithubUser();
