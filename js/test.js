@@ -1534,3 +1534,230 @@ usersById = {
 // }
 
 // demoGithubUser();
+
+// function* gen() {
+//   let ask1 = yield "2 + 2 = ?";
+
+//   alert(ask1); // 4
+
+//   let ask2 = yield ask1;
+
+//   alert(ask2); // 9
+// }
+
+// const generator = gen();
+
+// alert( generator.next().value ); // "2 + 2 = ?"
+
+// alert( generator.next( new Error('test')).value ); // "3 * 3 = ?"
+
+// alert( generator.next(9).done ); // true
+
+// function* pseudoRandom(seed = 1) {
+//   let previous = (seed * 16807) % 2147483647;
+
+//   yield previous;
+
+//   while (true) {
+//     previous = (previous * 16807) % 2147483647;
+//     yield previous;
+//   }
+// }
+
+// const generator = pseudoRandom(1);
+
+// alert(generator.next().value); // 16807
+// alert(generator.next().value); // 282475249
+// alert(generator.next().value); // 1622650073
+
+// let range = {
+//   from: 1,
+//   to: 10,
+
+//   [Symbol.asyncIterator]() {
+//     return {
+//       cur: this.from,
+//       last: this.to,
+
+//       async next() {
+
+//         await new Promise (resolve => setTimeout(resolve, 1000));
+
+//         if (this.cur <= this.last) {
+//           return { value: this.cur++, done: false };
+//         } else {
+//           return { value: this.cur, done: true };
+//         }
+//       },
+//     };
+//   },
+// };
+
+// (async () =>{
+//   for await (let x of range) {
+//     alert(x);
+//   }
+// })()
+
+// async function* generator(start, stop) {
+//   while (start <= stop) {
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
+//     yield start++;
+//   }
+// }
+
+// (async () => {
+//   for await (let x of generator(1, 10)) {
+//     alert(x);
+//   }
+// })();
+
+// const obj = {
+//   async *[Symbol.asyncIterator]() {
+//     let pos = this.from;
+//     while (pos <= this.to) {
+//       await new Promise(resolve => setTimeout(resolve, 60000));
+
+//       yield pos++;
+//     }
+//   },
+// };
+
+// Object.defineProperties(obj, {
+//   to: {
+//     value: 10,
+//   },
+//   from: {
+//     value: 1,
+//   },
+// });
+
+// (async () => {
+//   for await (let x of obj) {
+//     console.log(x);
+//   }
+// })();
+
+// async function* fetchCommits(repo) {
+//   let url = `https://api.github.com/repos/${repo}/commits`;
+
+//   while (url) {
+//     const response = await fetch(url, {
+//       headers: { "User-Agent": "Our script" },
+//     });
+
+//     const body = await response.json();
+
+//     let nextPage = response.headers.get("Link").match(/<(.*?)>; rel="next"/);
+//     nextPage = nextPage?.[1];
+
+//     for (let commit of body) yield commit;
+
+//     url = nextPage;
+//   }
+// }
+
+// (async () => {
+//   let count = 0;
+
+//   for await (const commit of fetchCommits(
+//     "javascript-tutorial/en.javascript.info"
+//   )) {
+//     console.log(commit.author.login);
+
+//     if (++count == 100) {
+//       // let's stop at 100 commits
+//       break;
+//     }
+//   }
+// })();
+
+// class streamData {
+//   constructor({ from = 1, to = 20, step = 5, interval = 1000 } = {}) {
+//     this.from = from;
+//     this.to = to;
+//     this.step = step;
+//     this.interval = interval;
+//   }
+
+//   async *_getRecords(url, from, to) {
+//     let requests = [];
+
+//     while (from <= to) {
+//       requests.push(fetch(url + from));
+//       ++from;
+//     }
+
+//     let result = await Promise.all(requests);
+
+//     result = await Promise.all(result.map((value) => value.json()));
+
+//     yield result;
+//   }
+
+//   async show(url) {
+//     while (this.from <= this.to) {
+//       for await (let record of this._getRecords(
+//         url,
+//         this.from,
+//         this.from + this.step - 1
+//       )) {
+//         console.table(record);
+//       }
+
+//       this.from += this.step;
+
+//       await new Promise((resolve) => setInterval(resolve, this.interval));
+//     }
+//   }
+// }
+
+// let stream = new streamData({to: 300});
+
+// stream.show("https://jsonplaceholder.typicode.com/photos/");
+
+// import { sayHi } from "./test2.js";
+
+// let user = 'Liam';
+// sayHi();
+// console.log(import.meta)
+
+// let user = {
+//   name: 'John',
+// };
+
+// function wrap(target) {
+//   return new Proxy(target, {
+//     get(target, prop, receiver){
+//       if (prop in target){
+//         return Reflect.get (target, prop, receiver);
+//       }
+//       throw ReferenceError(`Property doesn't exist: "${prop}"`)
+//     }
+//   })
+// }
+
+// user = wrap(user);
+
+// alert(user.name); // John
+// alert(user.age);
+
+// let array = [1, 2, 3];
+
+// array = new Proxy(array, {
+//   get(target, prop, receiver) {
+//     if (prop < 0) {
+//       prop = +prop + target.length;
+//       return Reflect.get(target, prop, receiver);
+//     } else {
+//       return Reflect.get(target, prop, receiver);
+//     }
+//   },
+// });
+
+// alert( array[-1] ); // 3
+// alert( array[-2] ); // 2
+
+// let ex = prompt("Enter expression: ", 0);
+// alert(window.eval(ex));
+
