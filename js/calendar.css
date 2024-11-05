@@ -1,0 +1,46 @@
+      .calendar {
+        background-color: #2e2d2d;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+
+      .calendar caption .month {
+        font-size: 2.5rem;
+        margin-right: 10px;
+        opacity: 0.5;
+      }
+
+      .calendar table {
+        border-collapse: collapse;
+      }
+
+      .calendar thead tr {
+        background-color: #c1c1c1;
+        color: black;
+      }
+
+      .calendar td,
+      .calendar th {
+        border: 1px solid #000;
+        text-align: center;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      td:not(.placeholder):hover {
+        box-shadow: rgba(200, 200, 200, 0.8) 0 0 5px 2px inset;
+        transition: 0.7s;
+      }
+
+      td.today {
+        background: radial-gradient(
+          circle,
+          #2e2d2d 50%,
+          rgba(148, 188, 233, 0.61) 100%
+        );
+      }
+
+      .calendar .placeholder {
+        background-color: rgb(42, 40, 39);
+      }

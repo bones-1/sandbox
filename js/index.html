@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./test.js"></script>
-    <script src="test2.js" defer></script>
+    <script src="./test2.js" defer type="module" defer></script>
     <title>Test Page</title>
     <link rel="shortcut icon" href="#" />
 
     <style>
+      @import url("./calendar.css");
+
+      :root {
+        position: relative;
+        scroll-behavior: smooth;
+        scroll-behavior: smooth;
+        background-color: #2e2d2d;
+        color: #e5e5e5;
+      }
+
       .alert {
         padding: 15px;
         border: 1px solid #d6e9c6;
@@ -18,14 +28,301 @@
         font-family: monospace;
         margin-top: 10px;
       }
+
+      #example {
+        width: 300px;
+        height: 200px;
+        border: 25px solid #e8c48f;
+        padding: 20px;
+        overflow: auto;
+      }
+      #field {
+        width: 200px;
+        border: 10px groove black;
+        background-color: #00ff00;
+        position: relative;
+        color: #000;
+      }
+
+      #ball {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 10px black solid;
+      }
+
+      .heart {
+        background-color: rgb(132, 84, 122);
+        border-radius: 50%;
+      }
+
+      #field2 {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00ff00;
+        overflow: hidden;
+        color: #000;
+        position: relative;
+      }
+
+      #ball2 {
+        position: absolute;
+        transition: ease;
+        transition-duration: 0.6s;
+        top: 0;
+        left: 0;
+      }
+
+      .sentence:hover {
+        cursor: pointer;
+      }
+      .sentence::before {
+        content: "▶";
+        margin-right: 5px;
+      }
+
+      .sentence.expanded::before {
+        content: "▼";
+        color: green;
+      }
+
+      .listing span:hover {
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      #list.hidden {
+        display: none;
+      }
+
+      .pane {
+        background: #edf5e1;
+        padding: 10px 20px 10px;
+        border-top: solid 2px #c4df9b;
+        color: black;
+        width: 470px;
+        position: relative;
+      }
+
+      .remove-button {
+        font-size: 110%;
+        color: darkred;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .arrow {
+        padding: 0;
+        background: #ddd;
+        border-radius: 15px;
+        border: 1px solid gray;
+        font-size: 24px;
+        line-height: 24px;
+        color: #444;
+        display: block;
+      }
+
+      .arrow:focus {
+        outline: none;
+      }
+
+      .arrow:hover {
+        background: #ccc;
+        cursor: pointer;
+      }
+
+      .carousel ul {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        height: 130px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0;
+        transition: 0.5s;
+      }
+
+      .carousel {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        box-sizing: content-box;
+        background-color: #fff;
+        border-radius: 15px;
+        width: max-content;
+        overflow: hidden;
+      }
+
+      .carousel .left-end,
+      .carousel .right-end {
+        display: flex;
+        flex-direction: column;
+        width: 30px;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+      }
+
+      .carousel img {
+        width: 130px;
+        height: 130px;
+        display: block; /* removes extra space near images */
+      }
+
+      .carousel ul li {
+        display: inline-block; /* removes extra space between list items */
+      }
+
+      .calendar {
+        display: none;
+      }
+
+      .boxes * {
+        margin: 10px;
+        border: 1px solid blue;
+      }
+
+      .highlight {
+        background-color: rgba(126, 150, 104, 0.504);
+      }
+      #grid {
+        color: #999;
+        border-collapse: collapse;
+      }
+      #grid th,
+      #grid td {
+        border: 1px solid black;
+        padding: 4px;
+      }
+      #grid th {
+        cursor: pointer;
+      }
+      #grid th:hover {
+        background: yellow;
+      }
+
+      .tooltip {
+        /* some styles for the tooltip, you can use your own instead */
+        position: absolute;
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font: italic 14px/1.3 sans-serif;
+        color: #333;
+        background: #fff;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      #contents {
+        padding: 5px;
+        border: 1px green solid;
+      }
+
+      #largeImg {
+        box-sizing: border-box;
+        border: solid 1px #ccc;
+        width: 550px;
+        height: 400px;
+        padding: 5px;
+      }
+
+      #thumbs {
+        display: flex;
+        flex-direction: row;
+        width: 550px;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+      }
+
+      #thumbs li {
+        border: solid 1px #ccc;
+        width: 100px;
+        height: 100px;
+        padding: 3px;
+        list-style: none;
+      }
+
+      #thumbs li:hover {
+        border-color: #ff9900;
+      }
+
+      #test-button {
+        display: block;
+        height: 100px;
+        width: 400px;
+        background: linear-gradient(180deg, #d2bfd8, white 50%, #d2bfd8 100%);
+        border-radius: 10px;
+        margin: 20px auto;
+      }
+
+      #selectable-list li {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+          #house {
+      margin-top: 50px;
+      width: 400px;
+      border: 1px solid brown;
+    }
+
+    #roof {
+      width: 0;
+      height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 20px solid brown;
+      margin-top: -20px;
+    }
+
+    #house  p {
+      text-align: justify;
+      margin: 10px 3px;
+    }
     </style>
   </head>
-  <body style="background-color: #2e2d2d; color: #c1c1c1">
+  <body>
     <h1 id="title">TestPad</h1>
 
-    <ul>
+    <div id="example">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe vel
+        tempora quos nihil dolor aliquid dicta minima quibusdam, repellendus aut
+        officia non modi quam quo est aperiam tenetur provident temporibus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet culpa
+        tempora doloribus nihil, laboriosam earum dolores est reprehenderit
+        cumque consectetur laborum magnam quidem quibusdam illum, ea libero
+        optio commodi. Aliquid!
+      </p>
+    </div>
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball" loading="lazy" /> .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <ul class="main">
       <li>
-        Cows
+        Animals
         <ul>
           <li>
             Mammals
@@ -34,7 +331,6 @@
               <li>Donkeys</li>
               <li>Dogs</li>
               <li>Tigers</li>
-              <li>Cows</li>
             </ul>
           </li>
           <li>
@@ -48,7 +344,7 @@
         </ul>
       </li>
       <li>
-        Cows
+        Fishes
         <ul>
           <li>
             Aquarium
@@ -77,8 +373,250 @@
       <li><a href="http://internal.com/test">http://internal.com/test</a></li>
     </ul>
 
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+
+    <button data-tooltip="the tooltip is longer than the element">
+      Short button
+    </button>
+    <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+    <p>
+      Scroll the page to make buttons appear on the top, check if the tooltips
+      show up correctly.
+    </p>
+
     <div class="alert">
       <strong>Hi there!</strong> You've read an important message.
+    </div>
+    <ul class="user-list"></ul>
+    <ul class="listing"></ul>
+    <div class="calendar"></div>
+
+    <table class="users">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Smith</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td>
+          <td>Brown</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td>
+          <td>Lee</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </tbody>
+    </table>
+    <input type="button" value="Click to hide the table" id="hider" />
+    <input type="button" value="Click to hide this button" id="hide-self" />
+
+    <p>
+      Click on a field to move the ball there. <br />
+      The ball should never leave the field.
+    </p>
+
+    <div id="field2">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball2" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+    <div class="list-wrapper">
+      <span class="sentence">Sweeties (click me)!</span>
+      <ul id="list" class="hidden">
+        <li>Cake</li>
+        <li>Donut</li>
+        <li>Honey</li>
+      </ul>
+    </div>
+    <div class="pane-list">
+      <div class="pane">
+        <h3>Horse</h3>
+        <p>
+          The horse is one of two extant subspecies of Equus ferus. It is an
+          odd-toed ungulate mammal belonging to the taxonomic family Equidae.
+          The horse has evolved over the past 45 to 55 million years from a
+          small multi-toed creature, Eohippus, into the large, single-toed
+          animal of today.
+        </p>
+      </div>
+      <div class="pane">
+        <h3>Donkey</h3>
+        <p>
+          The donkey or ass (Equus africanus asinus) is a domesticated member of
+          the horse family, Equidae. The wild ancestor of the donkey is the
+          African wild ass, E. africanus. The donkey has been used as a working
+          animal for at least 5000 years.
+        </p>
+      </div>
+      <div class="pane">
+        <h3>Cat</h3>
+        <p>
+          The domestic cat (Latin: Felis catus) is a small, typically furry,
+          carnivorous mammal. They are often called house cats when kept as
+          indoor pets or simply cats when there is no need to distinguish them
+          from other felids and felines. Cats are often valued by humans for
+          companionship and for their ability to hunt vermin.
+        </p>
+      </div>
+    </div>
+    <div class="carousel">
+      <div class="left-end"><button class="arrow">⇦</button></div>
+
+      <ul>
+        <li><img src="https://en.js.cx/carousel/1.png" /></li>
+        <li><img src="https://en.js.cx/carousel/2.png" /></li>
+        <li><img src="https://en.js.cx/carousel/3.png" /></li>
+        <li><img src="https://en.js.cx/carousel/4.png" /></li>
+        <li><img src="https://en.js.cx/carousel/5.png" /></li>
+        <li><img src="https://en.js.cx/carousel/6.png" /></li>
+        <li><img src="https://en.js.cx/carousel/7.png" /></li>
+        <li><img src="https://en.js.cx/carousel/8.png" /></li>
+        <li><img src="https://en.js.cx/carousel/9.png" /></li>
+        <li><img src="https://en.js.cx/carousel/10.png" /></li>
+      </ul>
+      <div class="right-end"><button class="arrow">⇨</button></div>
+    </div>
+    <div class="boxes">
+      <form onclick="highlight()">
+        FORM
+        <div>DIV</div>
+        <div><span>P</span></div>
+      </form>
+    </div>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Age</th>
+          <th data-type="string">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>John</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Pete</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Ann</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Eugene</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Ilya</td>
+        </tr>
+      </tbody>
+    </table>
+    <fieldset id="contents">
+      <legend>#contents</legend>
+      <p>
+        How about to read <a href="https://wikipedia.org">Wikipedia</a> or visit
+        <a href="https://w3.org"
+          ><span><i>W3.org</i></span></a
+        >
+        and learn about modern standards?
+      </p>
+    </fieldset>
+    <div>
+      <img
+        id="largeImg"
+        src="https://en.js.cx/gallery/img1-lg.jpg"
+        alt="Large image"
+      />
+    </div>
+
+    <ul id="thumbs">
+      <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
+      <li>
+        <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"
+          ><img src="https://en.js.cx/gallery/img2-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"
+          ><img src="https://en.js.cx/gallery/img3-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"
+          ><img src="https://en.js.cx/gallery/img4-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"
+          ><img src="https://en.js.cx/gallery/img5-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"
+          ><img src="https://en.js.cx/gallery/img6-thumb.jpg"
+        /></a>
+      </li>
+    </ul>
+    <input type="button" value="Test Button!" id="test-button" />
+
+    Click on a list item to select it.
+    <br />
+
+    <ul id="selectable-list">
+      <li>Christopher Robin</li>
+      <li>Winnie-the-Pooh</li>
+      <li>Tigger</li>
+      <li>Kanga</li>
+      <li>Rabbit. Just rabbit.</li>
+    </ul>
+
+    <div data-tooltip="Here is the house interior" id="house">
+      <div data-tooltip="Here is the roof" id="roof"></div>
+
+      <p>Once upon a time there was a mother pig who had three little pigs.</p>
+
+      <p>
+        The three little pigs grew so big that their mother said to them, "You
+        are too big to live here any longer. You must go and build houses for
+        yourselves. But take care that the wolf does not catch you."
+      </p>
+
+      <p>
+        The three little pigs set off. "We will take care that the wolf does not
+        catch us," they said.
+      </p>
+
+      <p>
+        Soon they met a man.
+        <a
+          href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs"
+          data-tooltip="Read on…"
+          >Hover over me</a
+        >
+      </p>
     </div>
   </body>
 </html>
