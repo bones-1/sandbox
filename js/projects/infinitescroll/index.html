@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      .dates {
+        width: 80%;
+        height: 385px;
+        background-color: brown;
+        color: white;
+        margin: 0 auto;
+        overflow-y: scroll;
+        padding-top: 10px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .date-entry {
+        display: block;
+        width: max-content;
+        height: 35px;
+        margin: 0 auto;
+      }
+
+      .back-to-top {
+        background-color: yellow;
+        height: 20px;
+        width: 20px;
+        position: sticky;
+        float: right;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+
+      span:focus{
+        display: flex;
+        align-items: center;
+        transform: translateX(-25px);
+        background-color: rgb(185, 62, 62);
+        padding: 0 10px;
+        border-radius: 10px;
+        box-shadow: 2px -6px 6px 1px black;
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Scroll me</h1>
+    <div class="dates">
+      <div class="back-to-top" hidden></div>
+    </div>
+    <a href="#">
+      <span><p>Ghostbusters!</p></span>
+    </a>
+
+    <script>
+
+      const container = document.querySelector(".dates");
+      const backToTopButton = document.querySelector(".back-to-top");
+      const dateHeight = 35;
+
+      container.addEventListener("scroll", scrollFill);
+      container.addEventListener("scroll", backToTop);
+      backToTopButton.addEventListener("click", () =>
+        container.scrollTo({ top: 0, behavior: "smooth" })
+      );
+
+      let entriesHeight = 0;
+
+      function backToTop() {
+        if (container.scrollTop >= container.offsetHeight) {
+          backToTopButton.hidden = false;
+          return;
+        }
+        backToTopButton.hidden = true;
+      }
+
+      // Initial fill;
+      for (let elem of genDateElem()) {
+        if (entriesHeight + dateHeight > container.offsetHeight + dateHeight)
+          break;
+
+        container.insertAdjacentElement("beforeend", elem);
+        entriesHeight += dateHeight;
+      }
+
+      function scrollFill() {
+        let distanceFromBottom =
+          container.scrollHeight -
+          (container.scrollTop + container.clientHeight);
+        if (distanceFromBottom < dateHeight * 2) {
+          for (let x = 2; x; x--) {
+            container.append(genDateElem().next().value);
+          }
+        }
+      }
+
+      function* genDateElem() {
+        while (true) {
+          let elem = document.createElement("span");
+          elem.insertAdjacentHTML("afterbegin", new Date().toString());
+          elem.className = "date-entry";
+          elem.tabIndex = '0';
+          yield elem;
+        }
+      }
+    </script>
+  </body>
+</html>

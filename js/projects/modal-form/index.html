@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Click the button below</h1>
+    <br />
+    <input type="button" value="Click to show the form" id="show-form" />
+
+    <div id="prompt-form-container" hidden>
+      <form id="prompt-form">
+        <div id="prompt-message">Enter something... <br />Please..</div>
+        <input name="text" type="text" />
+        <input type="submit" value="Ok" />
+        <input type="button" name="cancel" value="Cancel" />
+      </form>
+    </div>
+  </body>
+
+  <script>
+    const formContainer = document.getElementById("prompt-form-container");
+    const form = document.forms[0];
+    let fn;
+
+    form.addEventListener("keydown", stopTabout);
+    form.addEventListener("keydown", cancel);
+    form.addEventListener("click", cancel);
+
+    document.getElementById("show-form").onclick = () => {
+      showPrompt("Enter something<br>...smart :)", function (value) {
+        alert(value);
+      });
+    };
+
+    function showPrompt(html, callback) {
+      document.body.insertAdjacentHTML(
+        "afterbegin",
+        `<div class='cover-div'></div>`
+      );
+      document.getElementById("prompt-message").innerHTML = html;
+      document.body.style.overflow = "hidden";
+
+      formContainer.hidden = false;
+      form["text"].focus();
+
+      form.addEventListener(
+        "submit",
+        (e) => {
+          e.preventDefault();
+
+          fn = callback;
+          fn.call(this, form["text"].value || null);
+
+          reverseModal();
+        },
+        { once: true }
+      );
+    }
+
+    function reverseModal() {
+      document.querySelector(".cover-div").remove();
+      document.body.style.overflow = "";
+
+      formContainer.hidden = true;
+    }
+
+    function stopTabout(e) {
+      if (e.code !== "Tab") return;
+
+      let firstElement = form.elements[0];
+      let lastElement = form.elements[form.elements.length - 1];
+      let lastSelected = document.activeElement;
+
+      if (e.shiftKey && e.target === firstElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+
+      if (!e.shiftKey && lastSelected === lastElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    }
+
+    function cancel(e) {
+      if (
+        e.code == "Escape" ||
+        (e.type == "click" && e.target.value == "Cancel")
+      ) {
+        fn.call(this, null);
+
+        reverseModal();
+      }
+    }
+  </script>
+</html>

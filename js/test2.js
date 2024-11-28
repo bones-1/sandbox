@@ -1,6 +1,6 @@
 "use strict";
 
-import * as mouse from './modules.js';
+import * as mouse from "./modules.js";
 // function qSelector(css) {
 //   if (typeof css !== "string") throw SyntaxError("Argument must be CSS string");
 
@@ -566,18 +566,16 @@ grid.addEventListener("click", function (event) {
   }
 });
 
+// new mouse.SmartTooltips(document.body);
 
-document.body.addEventListener("mouseover", mouse.showTooltip);
-document.body.addEventListener("mouseout", mouse.removeTooltip);
+// document.body.addEventListener("click", function (event) {
+//   let linkElem = event.target.closest("a");
 
-document.body.addEventListener("click", function (event) {
-  let linkElem = event.target.closest("a");
+//   if (!(linkElem && linkElem.contains(event.target))) return;
 
-  if (!(linkElem && linkElem.contains(event.target))) return;
-
-  if (!confirm(`Leave for ${linkElem.getAttribute("href")} ?`))
-    event.preventDefault();
-});
+//   if (!confirm(`Leave for ${linkElem.getAttribute("href")} ?`))
+//     event.preventDefault();
+// });
 
 document.querySelector("#thumbs").addEventListener("click", function (event) {
   let thumbnail = event.target.closest("a");
@@ -592,7 +590,6 @@ document.querySelector("#thumbs").addEventListener("click", function (event) {
 let testButton = document.querySelector("#test-button");
 
 let lastClick = 0;
-let maxTimeBetweenClicks = 500;
 
 testButton.addEventListener("click", function (e) {
   if (e.timeStamp - lastClick > 500) {
@@ -654,12 +651,30 @@ testButton.addEventListener("click", (e) => {
 });
 
 let ulList = document.querySelector("#selectable-list");
-
-mouse.hightableList(ulList, 'highlight')
-
+let selectable = new mouse.Selectable(ulList, "highlight");
+selectable.makeSelectable();
 
 ulList.addEventListener("mousedown", (e) => {
   e.preventDefault();
 });
 
+let c = document.querySelector(".test-container");
+let b = document.querySelector(".test-container .ball");
+let m = document.querySelector(".test-container .mouse");
+
+b.addEventListener("click", (e) => {
+  console.log(e.clientX);
+  m.style.left =
+    e.clientX - b.getBoundingClientRect().left - m.offsetWidth / 2 + "px";
+  m.style.top =
+    e.clientY - b.getBoundingClientRect().top - m.offsetHeight / 2 + "px";
+});
+
+import { Slider} from "./modules.js";
+
+new Slider(
+  document.querySelector(".thumb"),
+  document.querySelector(".slider"),
+  document.querySelector(".test-container")
+);
 

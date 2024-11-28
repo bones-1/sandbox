@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./test.js"></script>
+    <script src="./test2.js" defer type="module" defer></script>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Test Page</title>
+  </head>
+  <body>
+    <h1 id="title">TestPad</h1>
+
+    <div id="example">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe vel
+        tempora quos nihil dolor aliquid dicta minima quibusdam, repellendus aut
+        officia non modi quam quo est aperiam tenetur provident temporibus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet culpa
+        tempora doloribus nihil, laboriosam earum dolores est reprehenderit
+        cumque consectetur laborum magnam quidem quibusdam illum, ea libero
+        optio commodi. Aliquid!
+      </p>
+    </div>
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball" loading="lazy" /> .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <ul class="main">
+      <li>
+        Animals
+        <ul>
+          <li>
+            Mammals
+            <ul>
+              <li>Cows</li>
+              <li>Donkeys</li>
+              <li>Dogs</li>
+              <li>Tigers</li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>Snakes</li>
+              <li>Birds</li>
+              <li>Lizards</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Fishes
+        <ul>
+          <li>
+            Aquarium
+            <ul>
+              <li>Guppy</li>
+              <li>Angelfish</li>
+            </ul>
+          </li>
+          <li>
+            Sea
+            <ul>
+              <li>Sea trout</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <a name="list">the list</a>
+    <ul>
+      <li><a href="http://google.com">http://google.com</a></li>
+      <li><a href="/tutorial">/tutorial.html</a></li>
+      <li><a href="local/path">local/path</a></li>
+      <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+      <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+      <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+    </ul>
+
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+
+    <button data-tooltip="the tooltip is longer than the element">
+      Short button
+    </button>
+    <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+    <p>
+      Scroll the page to make buttons appear on the top, check if the tooltips
+      show up correctly.
+    </p>
+
+    <div class="alert">
+      <strong>Hi there!</strong> You've read an important message.
+    </div>
+    <ul class="user-list"></ul>
+    <ul class="listing"></ul>
+    <div class="calendar"></div>
+
+    <table class="users">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Smith</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td>
+          <td>Brown</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td>
+          <td>Lee</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </tbody>
+    </table>
+    <input type="button" value="Click to hide the table" id="hider" />
+    <input type="button" value="Click to hide this button" id="hide-self" />
+
+    <p>
+      Click on a field to move the ball there. <br />
+      The ball should never leave the field.
+    </p>
+
+    <div id="field2">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball2" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+    <div class="list-wrapper">
+      <span class="sentence">Sweeties (click me)!</span>
+      <ul id="list" class="hidden">
+        <li>Cake</li>
+        <li>Donut</li>
+        <li>Honey</li>
+      </ul>
+    </div>
+    <div class="pane-list">
+      <div class="pane">
+        <h3>Horse</h3>
+        <p>
+          The horse is one of two extant subspecies of Equus ferus. It is an
+          odd-toed ungulate mammal belonging to the taxonomic family Equidae.
+          The horse has evolved over the past 45 to 55 million years from a
+          small multi-toed creature, Eohippus, into the large, single-toed
+          animal of today.
+        </p>
+      </div>
+      <div class="pane">
+        <h3>Donkey</h3>
+        <p>
+          The donkey or ass (Equus africanus asinus) is a domesticated member of
+          the horse family, Equidae. The wild ancestor of the donkey is the
+          African wild ass, E. africanus. The donkey has been used as a working
+          animal for at least 5000 years.
+        </p>
+      </div>
+      <div class="pane">
+        <h3>Cat</h3>
+        <p>
+          The domestic cat (Latin: Felis catus) is a small, typically furry,
+          carnivorous mammal. They are often called house cats when kept as
+          indoor pets or simply cats when there is no need to distinguish them
+          from other felids and felines. Cats are often valued by humans for
+          companionship and for their ability to hunt vermin.
+        </p>
+      </div>
+    </div>
+    <div class="carousel">
+      <div class="left-end"><button class="arrow">⇦</button></div>
+
+      <ul>
+        <li><img src="https://en.js.cx/carousel/1.png" /></li>
+        <li><img src="https://en.js.cx/carousel/2.png" /></li>
+        <li><img src="https://en.js.cx/carousel/3.png" /></li>
+        <li><img src="https://en.js.cx/carousel/4.png" /></li>
+        <li><img src="https://en.js.cx/carousel/5.png" /></li>
+        <li><img src="https://en.js.cx/carousel/6.png" /></li>
+        <li><img src="https://en.js.cx/carousel/7.png" /></li>
+        <li><img src="https://en.js.cx/carousel/8.png" /></li>
+        <li><img src="https://en.js.cx/carousel/9.png" /></li>
+        <li><img src="https://en.js.cx/carousel/10.png" /></li>
+      </ul>
+      <div class="right-end"><button class="arrow">⇨</button></div>
+    </div>
+    <div class="boxes">
+      <form onclick="highlight()">
+        FORM
+        <div>DIV</div>
+        <div><span>P</span></div>
+      </form>
+    </div>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Age</th>
+          <th data-type="string">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>John</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Pete</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Ann</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Eugene</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Ilya</td>
+        </tr>
+      </tbody>
+    </table>
+    <fieldset id="contents">
+      <legend>#contents</legend>
+      <p>
+        How about to read <a href="https://wikipedia.org">Wikipedia</a> or visit
+        <a href="https://w3.org"
+          ><span><i>W3.org</i></span></a
+        >
+        and learn about modern standards?
+      </p>
+    </fieldset>
+    <div>
+      <img
+        id="largeImg"
+        src="https://en.js.cx/gallery/img1-lg.jpg"
+        alt="Large image"
+      />
+    </div>
+
+    <ul id="thumbs">
+      <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
+      <li>
+        <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"
+          ><img src="https://en.js.cx/gallery/img2-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"
+          ><img src="https://en.js.cx/gallery/img3-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"
+          ><img src="https://en.js.cx/gallery/img4-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"
+          ><img src="https://en.js.cx/gallery/img5-thumb.jpg"
+        /></a>
+      </li>
+      <li>
+        <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"
+          ><img src="https://en.js.cx/gallery/img6-thumb.jpg"
+        /></a>
+      </li>
+    </ul>
+    <input type="button" value="Test Button!" id="test-button" />
+
+    Click on a list item to select it.
+    <br />
+
+    <ul id="selectable-list">
+      <li>Christopher Robin</li>
+      <li>Winnie-the-Pooh</li>
+      <li>Tigger</li>
+      <li>Kanga</li>
+      <li>Rabbit. Just rabbit.</li>
+    </ul>
+
+    <div data-tooltip="Here is the house interior" id="house">
+      <div data-tooltip="Here is the roof" id="roof"></div>
+
+      <p>Once upon a time there was a mother pig who had three little pigs.</p>
+
+      <p>
+        The three little pigs grew so big that their mother said to them, "You
+        are too big to live here any longer. You must go and build houses for
+        yourselves. But take care that the wolf does not catch you."
+      </p>
+
+      <p>
+        The three little pigs set off. "We will take care that the wolf does not
+        catch us," they said.
+      </p>
+
+      <p>
+        Soon they met a man.
+        <a
+          href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs"
+          data-tooltip="Read on…"
+          >Hover over me</a
+        >
+      </p>
+    </div>
+
+    <div class="test-container">
+      <div class="ball">
+        <div class="mouse"></div>
+      </div>
+      <div id="slider" class="slider">
+        <div class="thumb"></div>
+      </div>
+    </div>
+  </body>
+</html>

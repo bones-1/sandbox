@@ -1,0 +1,104 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  overflow-x: hidden;
+  background: #7d2ae8;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+header {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  background-color: rgb(30, 30, 32);
+}
+
+nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-section-left * {
+  display: inline-block;
+  color: rgb(240, 248, 255);
+}
+
+.page-title {
+  font-weight: 600;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.nav-links li {
+  margin-right: 5px;
+}
+
+.nav-links li:hover {
+  text-shadow: #fff 0 0 3px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.nav-section-right * {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.nav-button {
+  margin-left: 5px;
+  padding: 0 4px;
+  font-size: 1em;
+  border-radius: 3px;
+  border: none;
+}
+
+.nav-signup {
+  background-color: rgb(30, 30, 32);
+  color: aliceblue;
+}
+
+.nav-signup:hover {
+  text-shadow: #fff 0 0 3px;
+}
+
+.nav-login {
+  background-color: aliceblue;
+}
+
+.nav-login:hover {
+  box-shadow: #c3f6ff 0 0 3px 1px;
+  background-color: rgb(238, 238, 245);
+}
+
+.vertical-div {
+  height: 20px;
+  width: 1px;
+  background-color: aliceblue;
+  align-self: center;
+}
+
+.banner {
+  height: 300px;
+  width: 100%;
+}
+
+.banner img {
+  filter:  blur(1.5px) hue-rotate(-50deg);
+  width: 100%;
+  aspect-ratio: 16/9;
+}

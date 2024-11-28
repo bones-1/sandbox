@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="my.css" />
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <ul>
+      <li>Click the div to edit.</li>
+      <li>Enter or blur saves the result.</li>
+    </ul>
+
+    HTML is allowed.
+
+    <div id="view" class="view">Text</div>
+
+    <script>
+      const div = document.getElementById("view");
+      const area = document.createElement("textarea");
+
+      div.addEventListener("click", () => {
+        area.classList.add("edit");
+        area.value = div.innerHTML;
+        div.replaceWith(area);
+        area.focus();
+      });
+
+      area.addEventListener("keydown", (e) => {
+        if (e.code == "Enter") {
+          area.blur();
+        }
+      });
+
+      area.addEventListener("blur", () => {
+        div.innerHTML = area.value;
+        area.replaceWith(div);
+      });
+
+      // ...your code...
+      // Note: <textarea> should have class="edit"
+      // my.css has styles to make it the same size as div
+    </script>
+  </body>
+</html>
