@@ -41,6 +41,36 @@
         padding-right: 10px;
         margin-bottom: 10px;
       }
+
+      form {
+        background-color: #272826;
+        width: max-content;
+        margin-bottom: 4rem;
+        border-bottom: 1px rgba(0,0,0,0) solid;
+      }
+
+      .submit{
+        margin: 0 auto;
+        display: block;
+        background-color: #82f684a4;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        box-shadow: #82f684a4 0 0 10px 2px;
+        margin-bottom: 1rem;
+        height: 1.5rem;
+        width: 4rem;
+        color:rgb(247, 235, 187);
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        font-size: 0.95rem;
+      }
+
+      textarea {
+        margin: 0 10px;
+        background-color: #464545;
+        color: white;
+      }
+
     </style>
   </head>
   <body>
@@ -48,23 +78,50 @@
 
     <p id="date"></p>
 
-    <form action="#" name="user">
+    <form
+      action="http://localhost:8888/save-user.php"
+      method="post"
+      name="user"
+      enctype="multipart/form-data"
+    >
       <label for="name"
         ><span class="title">Name:</span
-        ><input type="text" name="name" id="name" /></label
+        ><input
+          type="text"
+          name="name"
+          id="name"
+          autocomplete="name"
+          placeholder="John Jane"
+          value="John Doe" /></label
       ><br />
       <label for="age"
         ><span class="title">Age:</span
-        ><input type="number" name="age" id="age" min="3" max="120" /></label
+        ><input
+          type="number"
+          name="age"
+          id="age"
+          min="3"
+          max="120"
+          value="15" /></label
       ><br />
       <label for="gender"
         ><span class="title">Gender:</span
         ><select name="gender" id="gender">
-          <option value="male">Male</option>
+          <option value="">---</option>
+          <option value="male" selected>Male</option>
           <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select></label><br>
-        <input type="submit" value="Submit">
+        </select></label
+      ><br />
+      <p>Upload an image of yourself.</p>
+      <div id="avatar-display"></div>
+      <input type="file" name="avatar" id="avatar" /><br /><br />
+
+      <input type="submit" value="Submit" class="submit"/>
+    </form>
+    <form action="#" method="post" name="note">
+      <label for="note">Leave a note:</label><br /><br/>
+      <textarea name="data" id="note" placeholder="Write here" rows="3" cols="40"></textarea><br><br>
+      <button name="clear" class="submit">Clear</button>
     </form>
   </body>
 </html>

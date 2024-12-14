@@ -1,4 +1,5 @@
 <?php
+
 function cors()
 {
 
@@ -24,5 +25,6 @@ function cors()
         exit(0);
     }
 }
+
 
 cors();

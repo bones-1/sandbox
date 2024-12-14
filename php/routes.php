@@ -1,13 +1,22 @@
 <?php
 
-return [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/contact' => 'controllers/contact.php',
-    '/notes' => 'controllers/notes/index.php',
-    '/note' => 'controllers/notes/show.php',
-    '/notes/create' => 'controllers/notes/create.php',
+$router->get('/', 'index.php');
+$router->get('/about', 'about.php');
+$router->get('/contact', 'contact.php');
 
-    '/404' => 'controllers/errors/404.php',
-    '/403' => 'controllers/errors/403.php',
-];
+$router->get('/notes', 'notes/index.php') -> only('auth');
+$router->get('/note', 'notes/show.php');
+$router->delete('/note', 'notes/destroy.php');
+
+$router->get('/notes/create', 'notes/create.php');
+$router->post('/notes', 'notes/store.php');
+$router->patch('/notes', 'notes/update.php');
+$router->get('/note/edit', 'notes/edit.php');
+
+$router->post('/register', 'registration/store.php');
+$router->get('/register', 'registration/create.php') -> only('guest');
+
+$router->get('/login', 'session/create.php')->only('guest');
+$router->post('/session', 'session/store.php')->only('guest');
+$router->delete('/session', 'session/destroy.php')->only('auth');
+

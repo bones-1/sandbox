@@ -2,15 +2,11 @@
 
 return [
     'database' => [
-        'dbname' => 'myapp',
         'host' => 'localhost',
-        'username' => 'bookorama',
-        'password' => 'password',
+        'port' => 3306,
+        'dbname' => 'myapp',
+        'charset' => 'utf8mb4'
     ],
-];
 
-// Avaialble Options:
-// 'dbname' => String
-// 'host' => String
-// 'username' => String
-// 'password' => String
+    //
+];

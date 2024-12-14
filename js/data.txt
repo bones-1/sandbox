@@ -1,3 +1,2 @@
-{"name":"Douglas Campbell","age":"30","gender":"male"}
-{"name":"Michael Jackson","age":"50","gender":"male"}
-{"name":"Jane Heather","age":"21","gender":"female"}{"name":"","age":"","gender":"male"}
+{"name":"John Doe","age":"15","gender":"male","file":"3.png"}
+{"name":"John Doe","age":"15","gender":"male","file":""}
